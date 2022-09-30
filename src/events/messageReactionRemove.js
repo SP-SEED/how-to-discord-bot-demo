@@ -3,7 +3,7 @@ const env = require('../config/env');
 module.exports = {
   name: 'messageReactionRemove',
   execute: async (reaction, user) => {
-    if (reaction.message.id !== '1025134866251120721') return;
+    if (reaction.message.id !== env.REACTION_MESSAGE_ID) return;
 
     if (reaction.partial) {
       try {
@@ -17,11 +17,11 @@ module.exports = {
     const guild = user.client.guilds.cache.get(env.GUILD_ID);
     const guildMember = guild.members.cache.get(user.id);
 
-    if (reaction.emoji.id === '860439197843849228')
-      guildMember.roles.remove('1025134913923588137');
+    if (reaction.emoji.id === env.EMOTE1_ID)
+      guildMember.roles.remove(env.ROLE1_ID);
 
-    if (reaction.emoji.id === '931556187676237874')
-      guildMember.roles.remove('1025134938435100682');
+    if (reaction.emoji.id === env.EMOTE2_ID)
+      guildMember.roles.remove(env.ROLE2_ID);
 
     return;
   },
